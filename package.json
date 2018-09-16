@@ -37,6 +37,7 @@
     "eslint-plugin-import": "^2.14.0",
     "functional-red-black-tree": "^1.0.1",
     "google-closure-library": "^20170626.0.0",
+    "is-iterable": "^1.1.1",
     "mocha": "^5.2.0",
     "reify": "^0.17.3",
     "rollup": "^0.65.2",
