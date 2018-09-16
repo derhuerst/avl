@@ -46,7 +46,9 @@ Or use the compiled version 'dist/avl.js'.
 * `tree.forEach(function(node) {...}):Tree` In-order traversal
 * `tree.range(lo, high, function(node) {} [, context]):Tree` - Walks the range of keys in order. Stops, if the visitor function returns a non-zero value.
 * `tree.keys():Array<key>` - Returns the array of keys in order
+* `tree.keysIterable():Iterable<key>` - Returns an [iterable](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterable_protocol) of keys in order
 * `tree.values():Array<*>` - Returns the array of data fields in order
+* `tree.valuesIterable():Iterable<key>` - Returns an [iterable](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterable_protocol) of data fields in order
 * `tree.pop():Node` - Removes smallest node
 * `tree.min():key` - Returns min key
 * `tree.max():key` - Returns max key
@@ -56,6 +58,7 @@ Or use the compiled version 'dist/avl.js'.
 * `tree.next(node):Node` - Successor node
 * `tree.load(keys:Array<*>, [values:Array<*>]):Tree` - Bulk-load items
 * `tree.destroy():Tree, tree.clear():Tree` - Empty the tree
+* `tree[Symbol.iterator]():Iterable<[key, value]>` - Returns an [iterator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#The_iterator_protocol) of keys & data fields in order
 
 **Comparator**
 
