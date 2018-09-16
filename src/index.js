@@ -351,6 +351,85 @@ export default class AVLTree {
   }
 
 
+  * _keysGenerator () {
+    var current = this._root;
+    var s = [], done = false;
+
+    while (!done) {
+      if (current) {
+        s.push(current);
+        current = current.left;
+      } else {
+        if (s.length > 0) {
+          current = s.pop();
+          yield current.key;
+          current = current.right;
+        } else done = true;
+      }
+    }
+  }
+
+  /**
+   * Returns an iterable for all keys, in order.
+   * @return {Iterator<Key>}
+   */
+  keysIterable () {
+    const o = {};
+    if (Symbol && Symbol.iterator) {
+      o[Symbol.iterator] = () => this._keysGenerator();
+    }
+    return o;
+  }
+
+  * _valuesGenerator () {
+    var current = this._root;
+    var s = [], done = false;
+
+    while (!done) {
+      if (current) {
+        s.push(current);
+        current = current.left;
+      } else {
+        if (s.length > 0) {
+          current = s.pop();
+          yield current.data;
+          current = current.right;
+        } else done = true;
+      }
+    }
+  }
+
+  /**
+   * Returns an iterable for all values, in order.
+   * @return {Iterator<Key>}
+   */
+  valuesIterable () {
+    const o = {};
+    if (Symbol && Symbol.iterator) {
+      o[Symbol.iterator] = () => this._valuesGenerator();
+    }
+    return o;
+  }
+
+  * _entriesGenerator () {
+    var current = this._root;
+    var s = [], done = false;
+
+    while (!done) {
+      if (current) {
+        s.push(current);
+        current = current.left;
+      } else {
+        if (s.length > 0) {
+          current = s.pop();
+          yield [current.key, current.data];
+          current = current.right;
+        } else done = true;
+      }
+    }
+  }
+
+
   /**
    * Returns node at given index
    * @param  {number} index
@@ -693,6 +772,12 @@ export default class AVLTree {
   toString (printNode) {
     return print(this._root, printNode);
   }
+}
+
+if (Symbol && Symbol.iterator) {
+  AVLTree.prototype[Symbol.iterator] = function getIterator () {
+    return this._entriesGenerator();
+  };
 }
 
 AVLTree.default = AVLTree;
